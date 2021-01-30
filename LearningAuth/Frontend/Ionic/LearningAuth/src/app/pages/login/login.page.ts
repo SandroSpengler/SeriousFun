@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     return this.loginService.sendLoginData(userName, userPassword, userEmail);
   };
 
-  public testFunction = (): void => {
+  public login = (): void => {
     if (this.checkIfInputsAreFilled()) {
       this.loginUser(this.userName, this.userPassword, this.userEmail)
         .pipe(
@@ -55,8 +55,8 @@ export class LoginPage implements OnInit {
   private checkIfInputsAreFilled = (): boolean => {
     if (
       this.userName !== "" &&
-      this.userPassword !== "" &&
-      this.userEmail !== ""
+      this.userPassword !== ""
+      // && this.userEmail !== ""
     ) {
       return true;
     } else {
