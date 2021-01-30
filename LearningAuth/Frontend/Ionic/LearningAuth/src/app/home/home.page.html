@@ -1,26 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Blank </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Welcome to my Page here you get a quick overview of a few projects
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="1" size-xs="5" offset-xs="1">
+        <ion-card>
+          <ion-card-header> Login Page </ion-card-header>
+          <ion-card-content>
+            <a routerLink="/login">
+              <ion-img
+                src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_.jpg"
+              >
+              </ion-img>
+            </a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
-  </div>
-</ion-content>
+      <ion-col size-md="4" offset-md="1" size-xs="5">
+        <ion-card>
+          <ion-card-header> Another Project </ion-card-header>
+          <ion-card-content>
+            <a routerLink="/login">
+              <ion-img
+                src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_.jpg"
+              >
+              </ion-img>
+            </a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
