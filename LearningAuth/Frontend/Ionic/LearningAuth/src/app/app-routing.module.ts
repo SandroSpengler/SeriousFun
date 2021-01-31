@@ -28,6 +28,28 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "contact",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./pages/contact/contact.module").then(
+            (m) => m.ContactPageModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "infos",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./pages/infos/infos.module").then((m) => m.InfosPageModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

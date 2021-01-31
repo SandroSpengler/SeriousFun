@@ -5,7 +5,11 @@
   <ion-button slot="end" color="secondary" *ngIf="!checkForLogin()"
     >Register</ion-button
   >
-  <ion-button slot="end" color="secondary" *ngIf="!checkForLogin()"
+  <ion-button
+    slot="end"
+    color="secondary"
+    *ngIf="!checkForLogin()"
+    routerLink="/login"
     >Log in</ion-button
   >
   <ion-button

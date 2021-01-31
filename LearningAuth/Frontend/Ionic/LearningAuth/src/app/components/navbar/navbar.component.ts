@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit {
 
   checkForLogin = (): boolean => {
     if (sessionStorage.getItem("token")) {
-      console.log("true");
       return true;
     } else {
       return false;
