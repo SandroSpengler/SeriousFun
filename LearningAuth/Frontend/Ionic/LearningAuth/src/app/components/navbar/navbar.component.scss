@@ -3,3 +3,19 @@
   font-size: 26px;
   color: Black;
 }
+
+ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 769px) {
+  ion-title {
+    font-size: 20px;
+  }
+
+  ion-button {
+    font-size: 14px;
+    height: 30px;
+  }
+}
