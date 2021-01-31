@@ -38,7 +38,11 @@ export class LoginPage implements OnInit {
             console.log(data.token);
           })
         )
-        .subscribe();
+        .subscribe((data) => {
+          if (data.status === 200) {
+            sessionStorage.setItem("token", data.body.token);
+          }
+        });
 
       this.clearData();
     } else {

@@ -33,9 +33,9 @@ export class LoginService {
   ): Observable<any> => {
     return this.http.post(
       `${this.url}UsersAuth/Login`,
-      this.fillUser(userName, userPassword, userEmail)
+      this.fillUser(userName, userPassword, userEmail),
       // Allows to actually look inside the response not only the response data
-      // { observe: "response" }
+      { observe: "response" }
     );
   };
 
