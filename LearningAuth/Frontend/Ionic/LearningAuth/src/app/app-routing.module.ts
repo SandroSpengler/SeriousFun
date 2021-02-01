@@ -50,6 +50,18 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "progressTracker",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./pages/progress-tracker/progress-tracker.module").then(
+            (m) => m.ProgressTrackerPageModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({

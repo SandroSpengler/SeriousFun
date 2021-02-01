@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Welcome to the Progress Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loggedIn">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="10" offset-md="1">
+        <app-standard-view></app-standard-view>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="loggedIn"> Sup </ion-content>

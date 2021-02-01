@@ -11,6 +11,8 @@ import { AppRoutingModule } from "./app-routing.module";
 
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
+// import { StandardViewComponent } from "./components/standard-view/standard-view.component";
+
 import { AuthguardGuard } from "./Authentification/authguard.guard";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 
