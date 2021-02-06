@@ -9,8 +9,15 @@ import { Router, NavigationStart } from "@angular/router";
 })
 export class ProgressTrackerPage implements OnInit {
   private loggedIn: boolean;
+  private title: string;
 
-  constructor(private router: Router, private AuthGuard: AuthguardGuard) {}
+  private exampleArray: string[];
+
+  constructor(private router: Router, private AuthGuard: AuthguardGuard) {
+    this.title = "Welcome to the Progress Tracker";
+
+    this.exampleArray = ["1", "2"];
+  }
 
   ngOnInit() {
     this.checkForLogInOnReload();
