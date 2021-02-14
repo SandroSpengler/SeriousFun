@@ -6,6 +6,7 @@ export const environment = {
   production: false,
 
   url: "http://192.168.178.58:5000/",
+  urlSpring: "http://192.168.178.58:8080/api/",
 };
 
 /*

@@ -13,8 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("./home/home.module").then((m) => m.HomePageModule),
+        loadChildren: () => import("./home/home.module").then((m) => m.HomePageModule),
       },
     ],
   },
@@ -23,8 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("./pages/login/login.module").then((m) => m.LoginPageModule),
+        loadChildren: () => import("./pages/login/login.module").then((m) => m.LoginPageModule),
       },
     ],
   },
@@ -33,10 +31,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("./pages/contact/contact.module").then(
-            (m) => m.ContactPageModule
-          ),
+        loadChildren: () => import("./pages/contact/contact.module").then((m) => m.ContactPageModule),
       },
     ],
   },
@@ -45,8 +40,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("./pages/infos/infos.module").then((m) => m.InfosPageModule),
+        loadChildren: () => import("./pages/infos/infos.module").then((m) => m.InfosPageModule),
       },
     ],
   },
@@ -56,8 +50,18 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("./pages/progress-tracker/progress-tracker.module").then(
-            (m) => m.ProgressTrackerPageModule
+          import("./pages/progress-tracker/progress-tracker.module").then((m) => m.ProgressTrackerPageModule),
+      },
+    ],
+  },
+  {
+    path: "progressTrackerDetail",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./pages/progress-tracker-detail/progress-tracker-detail.module").then(
+            (m) => m.ProgressTrackerDetailPageModule
           ),
       },
     ],
@@ -65,9 +69,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
