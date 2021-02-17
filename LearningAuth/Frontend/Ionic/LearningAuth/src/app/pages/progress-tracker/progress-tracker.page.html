@@ -76,12 +76,12 @@
         </ion-toolbar>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let element of sortedDates$ | async">
+    <ion-row *ngFor="let element of upNext">
       <ion-col size="9" offset="1">
         <ion-card>
           <ion-card-content
             ><div>
-              <span> Finish school Project </span>
+              <span> {{element.description}} </span>
             </div>
             <div>
               <span> due by </span>

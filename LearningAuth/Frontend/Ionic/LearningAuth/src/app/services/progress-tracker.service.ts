@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
 
+import { TaskModel } from "../Model/TaskModel";
+
 @Injectable({
   providedIn: "root",
 })
@@ -24,5 +26,11 @@ export class ProgressTrackerService {
 
   getTasksSortedByDate = (): Observable<any> => {
     return this.http.get(`${this.url}sortTasks`);
+  };
+
+  getTaskDateRange = (): Observable<any> => {
+    return this.http.get(
+      `${environment.urlSpring}sortedTaskRange?startDate=2021-02-08T14:12:30&endDate=2021-02-15T15:00:00`
+    );
   };
 }
