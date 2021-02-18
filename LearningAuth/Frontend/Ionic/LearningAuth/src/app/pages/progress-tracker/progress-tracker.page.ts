@@ -43,14 +43,14 @@ export class ProgressTrackerPage implements OnInit {
     // Displaying Data on Init
     this.sortedDates$ = this.getTasksSortedByDate();
 
-    this.getTaskByDateRange().subscribe();
+    this.getTaskByCreatedByDateRange(
+      this.generateISODate(-10),
+      this.generateISODate(0)
+    ).subscribe((data) => {
+      console.log(data);
+    });
 
     this.pushIntoUpNext().subscribe();
-
-    const date = new Date();
-    const dateY = new Date();
-
-    console.log(date.toISOString());
   }
 
   // Service Requests
@@ -59,8 +59,14 @@ export class ProgressTrackerPage implements OnInit {
     return this.progressTrackerService.getTasksSortedByDate();
   };
 
-  getTaskByDateRange = (): Observable<any> => {
-    return this.progressTrackerService.getTaskDateRange();
+  getTaskByCreatedByDateRange = (
+    startDate: string,
+    endDate: string
+  ): Observable<any> => {
+    return this.progressTrackerService.getTaskCreatedByDateRange(
+      startDate,
+      endDate
+    );
   };
 
   // Working with Data
@@ -79,6 +85,18 @@ export class ProgressTrackerPage implements OnInit {
         return this.upNext;
       })
     );
+  };
+
+  generateISODate = (dateOffset: number): string => {
+    let date = new Date();
+
+    if (dateOffset > 0) {
+      date.setDate(date.getDate() + dateOffset);
+    } else {
+      date.setDate(date.getDate() + dateOffset);
+    }
+
+    return date.toISOString();
   };
 
   // Authentification

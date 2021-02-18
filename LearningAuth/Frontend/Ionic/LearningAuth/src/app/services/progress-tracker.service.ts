@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
+import { map, tap } from "rxjs/operators";
 
 import { TaskModel } from "../Model/TaskModel";
 
@@ -15,7 +16,7 @@ export class ProgressTrackerService {
   url: String;
 
   constructor(private http: HttpClient) {
-    this.url = environment.urlSpring;
+    this.url = environment.urlSpringWindows;
 
     this.httpOptions = {
       headers: new Headers({
@@ -28,9 +29,12 @@ export class ProgressTrackerService {
     return this.http.get(`${this.url}sortTasks`);
   };
 
-  getTaskDateRange = (): Observable<any> => {
+  getTaskCreatedByDateRange = (
+    startDate: string,
+    endDate: string
+  ): Observable<any> => {
     return this.http.get(
-      `${environment.urlSpring}sortedTaskRange?startDate=2021-02-08T14:12:30&endDate=2021-02-15T15:00:00`
+      `${environment.urlSpringWindows}sortedTaskRange?startDate=${startDate}&endDate=${endDate}`
     );
   };
 }

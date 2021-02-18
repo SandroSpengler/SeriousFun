@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
 
-  url: "http://192.168.178.58:5000/",
+  urlNodeMac: "http://192.168.178.58:5000/api/",
+  urlSpringWindows: "http://127.0.0.1:8080/api/",
   urlSpring: "http://192.168.178.58:8080/api/",
 };
 
