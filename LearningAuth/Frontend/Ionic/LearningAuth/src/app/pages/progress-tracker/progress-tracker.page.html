@@ -26,7 +26,11 @@
             <ion-text> Current Tasks <span>10</span> </ion-text>
           </ion-card-header>
           <ion-card-content>
-            <ion-button> View Tasks </ion-button>
+            <ion-button
+              [routerLink]="['/progressTrackerDetail','TestUser8888','1','2']"
+            >
+              View Tasks
+            </ion-button>
             <ion-button> Add Task </ion-button>
           </ion-card-content>
         </ion-card>

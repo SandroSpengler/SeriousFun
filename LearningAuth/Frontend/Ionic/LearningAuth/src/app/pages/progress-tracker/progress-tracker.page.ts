@@ -35,9 +35,8 @@ export class ProgressTrackerPage implements OnInit {
     private progressTrackerService: ProgressTrackerService
   ) {
     this.title = "Welcome to the Progress Tracker";
-    this.upNext = [];
 
-    // this.exampleArray = ["1", "2"];
+    this.upNext = [];
     this.exampleArray = [];
     this.tasksDueTomorrowArray = [];
     this.tasksDueTomorrowArray = [];
