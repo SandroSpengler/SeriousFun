@@ -18,16 +18,19 @@ import { TaskModel } from "../../Model/TaskModel";
 export class ProgressTrackerPage implements OnInit {
   public loggedIn: boolean;
   public title: string;
+  public userName: string;
+  public startDateParam: string;
+  public endDateParam: string;
 
   public sortedDates$: Observable<any>;
   public upNext: TaskModel[];
 
   private exampleArray: Object[];
 
-  public currentTasksArray: Object[];
-  public tasksDueTomorrowArray: Object[];
-  public tasksDueInThreeDaysArray: Object[];
-  public tasksDueInSevenDaysArray: Object[];
+  public currentTasksArray: TaskModel[];
+  public tasksDueTomorrowArray: TaskModel[];
+  public tasksDueInThreeDaysArray: TaskModel[];
+  public tasksDueInSevenDaysArray: TaskModel[];
 
   constructor(
     private router: Router,
@@ -35,10 +38,10 @@ export class ProgressTrackerPage implements OnInit {
     private progressTrackerService: ProgressTrackerService
   ) {
     this.title = "Welcome to the Progress Tracker";
+    this.userName = "Sandro";
 
     this.upNext = [];
     this.exampleArray = [];
-    this.tasksDueTomorrowArray = [];
     this.tasksDueTomorrowArray = [];
     this.tasksDueInThreeDaysArray = [];
     this.tasksDueInSevenDaysArray = [];
@@ -140,8 +143,19 @@ export class ProgressTrackerPage implements OnInit {
     });
   };
 
-  // Authentification
+  setStartDateParam = (arr: TaskModel[]): string => {
+    this.startDateParam = arr[0].dueDate;
 
+    return this.startDateParam;
+  };
+
+  setEndDateParam = (arr: TaskModel[]): string => {
+    this.endDateParam = arr[arr.length - 1].dueDate;
+
+    return this.endDateParam;
+  };
+
+  // Authentification
   checkForLogInOnReload = (): void => {
     this.router.events.subscribe((event) => {
       // if (event instanceof NavigationStart) {
