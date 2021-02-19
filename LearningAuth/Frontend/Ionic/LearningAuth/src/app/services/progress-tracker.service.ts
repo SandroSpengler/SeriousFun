@@ -34,7 +34,16 @@ export class ProgressTrackerService {
     endDate: string
   ): Observable<any> => {
     return this.http.get(
-      `${environment.urlSpringWindows}sortedTaskRange?startDate=${startDate}&endDate=${endDate}`
+      `${environment.urlSpringWindows}sortedTaskByCreatedRange?startDate=${startDate}&endDate=${endDate}`
+    );
+  };
+
+  getSortedTaskByDueRange = (
+    startDate: string,
+    endDate: string
+  ): Observable<any> => {
+    return this.http.get(
+      `${environment.urlSpringWindows}sortedTaskByDueRange?startDate=${startDate}&endDate=${endDate}`
     );
   };
 }

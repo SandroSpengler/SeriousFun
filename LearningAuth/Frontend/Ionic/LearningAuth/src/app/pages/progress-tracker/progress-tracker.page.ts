@@ -24,6 +24,11 @@ export class ProgressTrackerPage implements OnInit {
 
   private exampleArray: Object[];
 
+  public currentTasksArray: Object[];
+  public tasksDueTomorrowArray: Object[];
+  public tasksDueInThreeDaysArray: Object[];
+  public tasksDueInSevenDaysArray: Object[];
+
   constructor(
     private router: Router,
     private AuthGuard: AuthguardGuard,
@@ -34,6 +39,10 @@ export class ProgressTrackerPage implements OnInit {
 
     // this.exampleArray = ["1", "2"];
     this.exampleArray = [];
+    this.tasksDueTomorrowArray = [];
+    this.tasksDueTomorrowArray = [];
+    this.tasksDueInThreeDaysArray = [];
+    this.tasksDueInSevenDaysArray = [];
   }
 
   ngOnInit() {
@@ -43,14 +52,9 @@ export class ProgressTrackerPage implements OnInit {
     // Displaying Data on Init
     this.sortedDates$ = this.getTasksSortedByDate();
 
-    this.getTaskByCreatedByDateRange(
-      this.generateISODate(-10),
-      this.generateISODate(0)
-    ).subscribe((data) => {
-      console.log(data);
-    });
-
     this.pushIntoUpNext().subscribe();
+
+    this.fillOverView();
   }
 
   // Service Requests
@@ -64,6 +68,16 @@ export class ProgressTrackerPage implements OnInit {
     endDate: string
   ): Observable<any> => {
     return this.progressTrackerService.getTaskCreatedByDateRange(
+      startDate,
+      endDate
+    );
+  };
+
+  getSortedTaskByDueRange = (
+    startDate: string,
+    endDate: string
+  ): Observable<any> => {
+    return this.progressTrackerService.getSortedTaskByDueRange(
       startDate,
       endDate
     );
@@ -95,8 +109,36 @@ export class ProgressTrackerPage implements OnInit {
     } else {
       date.setDate(date.getDate() + dateOffset);
     }
-
     return date.toISOString();
+  };
+
+  fillOverView = (): void => {
+    this.getSortedTaskByDueRange(
+      this.generateISODate(0),
+      this.generateISODate(1)
+    ).subscribe((data) => {
+      data.forEach((element) => {
+        this.tasksDueTomorrowArray.push(element);
+      });
+    });
+
+    this.getSortedTaskByDueRange(
+      this.generateISODate(0),
+      this.generateISODate(3)
+    ).subscribe((data) => {
+      data.forEach((element) => {
+        this.tasksDueInThreeDaysArray.push(element);
+      });
+    });
+
+    this.getSortedTaskByDueRange(
+      this.generateISODate(0),
+      this.generateISODate(7)
+    ).subscribe((data) => {
+      data.forEach((element) => {
+        this.tasksDueInSevenDaysArray.push(element);
+      });
+    });
   };
 
   // Authentification
