@@ -1,8 +1,9 @@
+import { LiteralMapEntry } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from "@angular/core";
 
 import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, from } from "rxjs";
+import { map, tap, mergeMap, groupBy, toArray, take } from "rxjs/operators";
 
 import { TaskModel } from "../../Model/TaskModel";
 import { ProgressTrackerService } from "../../services/progress-tracker.service";
@@ -18,7 +19,7 @@ export class ProgressTrackerDetailPage implements OnInit {
   public startDate: string;
   public endDate: string;
 
-  public taskArray: TaskModel[];
+  public taskArray: any;
   public taskList$: Observable<TaskModel[]>;
 
   constructor(
@@ -32,7 +33,8 @@ export class ProgressTrackerDetailPage implements OnInit {
     this.startDate = "";
     this.endDate = "";
 
-    this.taskArray = [new TaskModel(), new TaskModel()];
+    // this.taskArray = [new TaskModel(), new TaskModel()];
+    this.taskArray = [];
   }
 
   ngOnInit() {
@@ -41,15 +43,34 @@ export class ProgressTrackerDetailPage implements OnInit {
     this.endDate = this.routeParams.get("endDate");
 
     this.taskList$ = this.getTasks();
+    this.groupTasks();
   }
 
   getTasks = (): Observable<TaskModel[]> => {
-    return this.progressTrackerService
-      .getSortedTaskByDueRange(this.startDate, this.endDate)
-      .pipe(
-        tap((data) => {
-          console.log(data);
-        })
+    return this.progressTrackerService.getSortedTaskByDueRange(
+      this.startDate,
+      this.endDate
+    );
+  };
+
+  groupTasks = () => {
+    const getTasks = this.getTasks();
+
+    getTasks.subscribe((data) => {
+      const taskSource = from(data);
+
+      const example = taskSource.pipe(
+        // goes through the elements and groups them by specifed attribute (task.group)
+        groupBy((task) => task.group),
+        //places them into a list of which you can do toArray(), toObject()...
+        mergeMap((taskGroup) => taskGroup.pipe(toArray()))
       );
+
+      // here you can choose how many you want to take()
+      example.pipe().subscribe((data) => {
+        this.taskArray.push(data);
+      });
+      console.log(this.taskArray);
+    });
   };
 }
