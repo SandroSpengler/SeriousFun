@@ -1,9 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ProgressTrackerDetail</ion-title>
+    <ion-title>{{this.overviewText}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-item-group *ngFor="let element of this.taskList$ | async">
+      <ion-label>OFFICE</ion-label>
+      <ion-row>
+        <ion-col size-md="10" offset-md="1">
+          <ion-card>
+            <ion-item-sliding>
+              <ion-item>
+                <ion-label>
+                  <h2>HubStruck Notifications</h2>
+                  <p>A new message in your network</p>
+                  <p>Oceanic Next has joined your network</p>
+                </ion-label>
+                <ion-note slot="end"> 10:45 AM </ion-note>
+              </ion-item>
 
+              <ion-item-options side="start">
+                <ion-button>
+                  <ion-item-option>
+                    <ion-icon slot="icon-only" name="heart"></ion-icon>
+                  </ion-item-option>
+                </ion-button>
+              </ion-item-options>
+
+              <ion-item-options side="end">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+
+                <ion-item-option>
+                  <ion-icon slot="icon-only" name="star"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-item-group>
+  </ion-grid>
 </ion-content>

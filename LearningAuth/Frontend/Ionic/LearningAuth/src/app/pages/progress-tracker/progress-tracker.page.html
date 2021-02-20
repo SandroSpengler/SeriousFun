@@ -23,11 +23,17 @@
       <ion-col>
         <ion-card>
           <ion-card-header>
-            <ion-text> Current Tasks <span>10</span> </ion-text>
+            <ion-text>
+              Current Tasks <span>{{this.currentTasksArray.length}}</span>
+            </ion-text>
           </ion-card-header>
           <ion-card-content>
             <ion-button
-              [routerLink]="['/progressTrackerDetail','TestUser8888','1','2']"
+              *ngIf="currentTasksArray.length > 0"
+              [routerLink]="['/progressTrackerDetail',
+              'Current tasks',
+              this.setStartDateParam(this.currentTasksArray),
+              this.setEndDateParam(this.currentTasksArray)]"
             >
               View Tasks
             </ion-button>
@@ -40,15 +46,19 @@
         <ion-card>
           <ion-card-header>
             <ion-text>
-              Tasks due Tomorrow: <span>{{tasksDueTomorrowArray.length}}</span>
+              Tasks due Tomorrow:
+              <span>{{this.tasksDueTomorrowArray.length}}</span>
             </ion-text>
           </ion-card-header>
           <ion-card-content>
             <ion-button
               *ngIf="tasksDueTomorrowArray.length > 0"
-              [routerLink]="['/progressTrackerDetail','Sandro',this.setStartDateParam(this.tasksDueTomorrowArray),this.setEndDateParam(this.tasksDueTomorrowArray)]"
+              [routerLink]="['/progressTrackerDetail',
+              'Tasks due Tomorrow',
+              this.setStartDateParam(this.tasksDueTomorrowArray),
+              this.setEndDateParam(this.tasksDueTomorrowArray)]"
             >
-              > View Tasks
+              View Tasks
             </ion-button>
             <ion-button> Add Task </ion-button>
           </ion-card-content>
@@ -60,13 +70,16 @@
           <ion-card-header>
             <ion-text>
               Tasks due in <span>3</span> Days:
-              <span>{{tasksDueInThreeDaysArray.length}}</span></ion-text
+              <span>{{this.tasksDueInThreeDaysArray.length}}</span></ion-text
             >
           </ion-card-header>
           <ion-card-content>
             <ion-button
               *ngIf="tasksDueInThreeDaysArray.length > 0"
-              [routerLink]="['/progressTrackerDetail','Sandro',this.setStartDateParam(this.tasksDueInThreeDaysArray),this.setEndDateParam(this.tasksDueInThreeDaysArray)]"
+              [routerLink]="['/progressTrackerDetail',
+              'Tasks due in 3 days',
+              this.setStartDateParam(this.tasksDueInThreeDaysArray),
+              this.setEndDateParam(this.tasksDueInThreeDaysArray)]"
             >
               View Tasks
             </ion-button>
@@ -86,7 +99,10 @@
           <ion-card-content>
             <ion-button
               *ngIf="tasksDueInSevenDaysArray.length > 0"
-              [routerLink]="['/progressTrackerDetail','Sandro',this.setStartDateParam(this.tasksDueInSevenDaysArray),this.setEndDateParam(this.tasksDueInSevenDaysArray)]"
+              [routerLink]="['/progressTrackerDetail',
+              'Tasks due in 7 days',
+              this.setStartDateParam(this.tasksDueInSevenDaysArray),
+              this.setEndDateParam(this.tasksDueInSevenDaysArray)]"
             >
               View Tasks
             </ion-button>

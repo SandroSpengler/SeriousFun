@@ -46,4 +46,15 @@ export class ProgressTrackerService {
       `${environment.urlSpringWindows}sortedTaskByDueRange?startDate=${startDate}&endDate=${endDate}`
     );
   };
+
+  generateISODate = (dateOffset: number): string => {
+    let date = new Date();
+
+    if (dateOffset > 0) {
+      date.setDate(date.getDate() + dateOffset);
+    } else {
+      date.setDate(date.getDate() + dateOffset);
+    }
+    return date.toISOString();
+  };
 }

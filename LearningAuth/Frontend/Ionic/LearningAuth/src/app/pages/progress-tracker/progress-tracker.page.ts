@@ -42,6 +42,7 @@ export class ProgressTrackerPage implements OnInit {
 
     this.upNext = [];
     this.exampleArray = [];
+    this.currentTasksArray = [];
     this.tasksDueTomorrowArray = [];
     this.tasksDueInThreeDaysArray = [];
     this.tasksDueInSevenDaysArray = [];
@@ -90,10 +91,6 @@ export class ProgressTrackerPage implements OnInit {
   pushIntoUpNext = (): Observable<any> => {
     return this.getTasksSortedByDate().pipe(
       map((data: TaskModel[]) => {
-        // data.forEach((element) => {
-        //   this.upNext.push(element);
-        // });
-
         for (let i = 0; i < 3; i++) {
           this.upNext.push(data[i]);
         }
@@ -103,21 +100,19 @@ export class ProgressTrackerPage implements OnInit {
     );
   };
 
-  generateISODate = (dateOffset: number): string => {
-    let date = new Date();
-
-    if (dateOffset > 0) {
-      date.setDate(date.getDate() + dateOffset);
-    } else {
-      date.setDate(date.getDate() + dateOffset);
-    }
-    return date.toISOString();
-  };
-
   fillOverView = (): void => {
     this.getSortedTaskByDueRange(
-      this.generateISODate(0),
-      this.generateISODate(1)
+      this.progressTrackerService.generateISODate(0),
+      this.progressTrackerService.generateISODate(100)
+    ).subscribe((data) => {
+      data.forEach((element) => {
+        this.currentTasksArray.push(element);
+      });
+    });
+
+    this.getSortedTaskByDueRange(
+      this.progressTrackerService.generateISODate(0),
+      this.progressTrackerService.generateISODate(1)
     ).subscribe((data) => {
       data.forEach((element) => {
         this.tasksDueTomorrowArray.push(element);
@@ -125,8 +120,8 @@ export class ProgressTrackerPage implements OnInit {
     });
 
     this.getSortedTaskByDueRange(
-      this.generateISODate(0),
-      this.generateISODate(3)
+      this.progressTrackerService.generateISODate(0),
+      this.progressTrackerService.generateISODate(3)
     ).subscribe((data) => {
       data.forEach((element) => {
         this.tasksDueInThreeDaysArray.push(element);
@@ -134,8 +129,8 @@ export class ProgressTrackerPage implements OnInit {
     });
 
     this.getSortedTaskByDueRange(
-      this.generateISODate(0),
-      this.generateISODate(7)
+      this.progressTrackerService.generateISODate(0),
+      this.progressTrackerService.generateISODate(7)
     ).subscribe((data) => {
       data.forEach((element) => {
         this.tasksDueInSevenDaysArray.push(element);

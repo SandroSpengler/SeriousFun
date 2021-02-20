@@ -73,7 +73,7 @@ const routes: Routes = [
           ).then((m) => m.ProgressTrackerDetailPageModule),
       },
       {
-        path: ":authorName/:startDate/:endDate",
+        path: ":overviewText/:startDate/:endDate",
         loadChildren: () =>
           import(
             "./pages/progress-tracker-detail/progress-tracker-detail.module"
