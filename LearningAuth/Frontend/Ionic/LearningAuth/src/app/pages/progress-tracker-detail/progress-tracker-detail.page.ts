@@ -62,7 +62,7 @@ export class ProgressTrackerDetailPage implements OnInit {
       const example = taskSource.pipe(
         // goes through the elements and groups them by specifed attribute (task.group)
         groupBy((task) => task.group),
-        //places them into a list of which you can do toArray(), toObject()...
+        // places them into a list of which you can do toArray(), toObject()...
         mergeMap((taskGroup) => taskGroup.pipe(toArray()))
       );
 
