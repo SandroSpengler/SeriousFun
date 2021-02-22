@@ -1,0 +1,19 @@
+ion-card-header {
+  text-shadow: 2px black;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginContainer {
+    margin-top: 250px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .loginContainer {
+    margin-top: 100px;
+  }
+}
