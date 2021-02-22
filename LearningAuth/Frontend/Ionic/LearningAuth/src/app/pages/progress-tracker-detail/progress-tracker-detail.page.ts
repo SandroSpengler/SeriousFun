@@ -21,6 +21,11 @@ export class ProgressTrackerDetailPage implements OnInit {
   public endDate: string;
   public showNewTask: boolean;
 
+  public taskInputTitle: string;
+  public taskInputDescription: string;
+  public taskInputDueDate: string;
+  public taskInputGroup: string;
+
   public taskArray: any;
   public taskList$: Observable<TaskModel[]>;
 
@@ -31,6 +36,11 @@ export class ProgressTrackerDetailPage implements OnInit {
   ) {
     this.routeParams = {};
     this.routeParams = this.route.snapshot.paramMap;
+
+    this.taskInputTitle = "";
+    this.taskInputDescription = "";
+    this.taskInputGroup = "";
+    this.taskInputDueDate = "";
 
     this.overviewText = "";
     this.startDate = "";
@@ -55,6 +65,10 @@ export class ProgressTrackerDetailPage implements OnInit {
       this.startDate,
       this.endDate
     );
+  };
+
+  postNewTask = (dueDate: string, group: string): Observable<any> => {
+    return this.progressTrackerService.postNewTask(dueDate, group);
   };
 
   groupTasks = () => {
@@ -85,7 +99,21 @@ export class ProgressTrackerDetailPage implements OnInit {
   };
 
   sendCreateTask = () => {
-    this.showNewTask = false;
+    console.log(this.taskInputDueDate);
+
+    try {
+      this.postNewTask(this.taskInputDueDate, this.taskInputGroup).subscribe(
+        (data) => {
+          console.log(data);
+          this.taskArray = [];
+          this.groupTasks();
+        }
+      );
+
+      this.showNewTask = false;
+    } catch (error) {
+      throw new Error("Coudn't post a Task" + error);
+    }
   };
 
   // Action Sheet

@@ -28,9 +28,22 @@
         <ion-card>
           <ion-card-header> Create a new Task </ion-card-header>
           <ion-card-content>
-            <ion-input placeholder="Enter a Title"></ion-input>
-            <ion-input placeholder="Description Text"></ion-input>
-            <ion-input placeholder="Date until the Task is due"></ion-input>
+            <ion-input
+              [(ngModel)]="taskInputTitle"
+              placeholder="Enter a Title"
+            ></ion-input>
+            <ion-input
+              [(ngModel)]="taskInputDescription"
+              placeholder="Description Text"
+            ></ion-input>
+            <ion-input
+              [(ngModel)]="taskInputGroup"
+              placeholder="Choose a Group"
+            ></ion-input>
+            <ion-input
+              [(ngModel)]="taskInputDueDate"
+              placeholder="Date until the Task is due"
+            ></ion-input>
             <ion-button (click)="sendCreateTask()" color="success">
               Create
             </ion-button>

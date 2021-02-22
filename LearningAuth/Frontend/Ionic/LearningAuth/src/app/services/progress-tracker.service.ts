@@ -13,6 +13,7 @@ export class ProgressTrackerService {
   httpOptions: Object;
   httpHeaders: HttpHeaders;
 
+  taskModel: TaskModel;
   url: String;
 
   constructor(private http: HttpClient) {
@@ -47,6 +48,13 @@ export class ProgressTrackerService {
     );
   };
 
+  postNewTask = (dueDate: string, group: string): Observable<any> => {
+    return this.http.post(
+      `${environment.urlSpringWindows}task`,
+      this.fillTaskModel(dueDate, group)
+    );
+  };
+
   generateISODate = (dateOffset: number): string => {
     let date = new Date();
 
@@ -56,5 +64,17 @@ export class ProgressTrackerService {
       date.setDate(date.getDate() + dateOffset);
     }
     return date.toISOString();
+  };
+
+  fillTaskModel = (dueDate: string, group: string): TaskModel => {
+    this.taskModel = new TaskModel();
+
+    this.taskModel.author = "Sandro";
+    this.taskModel.description = "Not displayed yet";
+    this.taskModel.createdDate = this.generateISODate(0);
+    this.taskModel.dueDate = dueDate;
+    this.taskModel.group = group;
+
+    return this.taskModel;
   };
 }
