@@ -92,6 +92,10 @@ export class ProgressTrackerDetailPage implements OnInit {
     });
   };
 
+  deleteTask = (id: string): Observable<any> => {
+    return this.progressTrackerService.deleteTask(id);
+  };
+
   // Create Data
 
   createNewTask = () => {
@@ -102,18 +106,34 @@ export class ProgressTrackerDetailPage implements OnInit {
     console.log(this.taskInputDueDate);
 
     try {
-      this.postNewTask(this.taskInputDueDate, this.taskInputGroup).subscribe(
-        (data) => {
-          console.log(data);
-          this.taskArray = [];
-          this.groupTasks();
-        }
-      );
+      if (this.taskInputDueDate !== "") {
+        this.postNewTask(this.taskInputDueDate, this.taskInputGroup).subscribe(
+          (data) => {
+            console.log(data);
+            this.taskArray = [];
+            this.groupTasks();
+          }
+        );
 
-      this.showNewTask = false;
+        this.showNewTask = false;
+      } else {
+        console.log("No Date entered");
+      }
     } catch (error) {
       throw new Error("Coudn't post a Task" + error);
     }
+  };
+
+  cancelSendTask = (): void => {
+    this.showNewTask = false;
+  };
+
+  deleteTaskClick = (taskId: string): void => {
+    console.log(taskId);
+    this.deleteTask(taskId).subscribe((data) => {
+      this.taskArray = [];
+      this.groupTasks();
+    });
   };
 
   // Action Sheet

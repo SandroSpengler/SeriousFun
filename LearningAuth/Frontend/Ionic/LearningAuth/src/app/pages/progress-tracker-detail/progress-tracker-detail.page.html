@@ -47,6 +47,9 @@
             <ion-button (click)="sendCreateTask()" color="success">
               Create
             </ion-button>
+            <ion-button (click)="this.cancelSendTask()" color="danger">
+              Cancel
+            </ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -78,7 +81,10 @@
               </ion-item-options>
 
               <ion-item-options side="end">
-                <ion-item-option color="danger">
+                <ion-item-option
+                  (click)="deleteTaskClick(task.id)"
+                  color="danger"
+                >
                   <ion-icon slot="icon-only" name="trash"></ion-icon>
                 </ion-item-option>
 

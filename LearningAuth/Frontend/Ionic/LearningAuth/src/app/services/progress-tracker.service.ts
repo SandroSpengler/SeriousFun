@@ -55,6 +55,10 @@ export class ProgressTrackerService {
     );
   };
 
+  deleteTask = (id: string): Observable<any> => {
+    return this.http.delete(`${environment.urlSpringWindows}task?taskId=${id}`);
+  };
+
   generateISODate = (dateOffset: number): string => {
     let date = new Date();
 
