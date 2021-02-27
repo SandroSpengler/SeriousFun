@@ -61,10 +61,7 @@ export class ProgressTrackerDetailPage implements OnInit {
   }
 
   getTasks = (): Observable<TaskModel[]> => {
-    return this.progressTrackerService.getSortedTaskByDueRange(
-      this.startDate,
-      this.endDate
-    );
+    return this.progressTrackerService.getSortedTaskByDueRange(this.startDate, this.endDate);
   };
 
   postNewTask = (dueDate: string, group: string): Observable<any> => {
@@ -103,17 +100,13 @@ export class ProgressTrackerDetailPage implements OnInit {
   };
 
   sendCreateTask = () => {
-    console.log(this.taskInputDueDate);
-
     try {
       if (this.taskInputDueDate !== "") {
-        this.postNewTask(this.taskInputDueDate, this.taskInputGroup).subscribe(
-          (data) => {
-            console.log(data);
-            this.taskArray = [];
-            this.groupTasks();
-          }
-        );
+        this.postNewTask(this.taskInputDueDate, this.taskInputGroup).subscribe((data) => {
+          console.log(data);
+          this.taskArray = [];
+          this.groupTasks();
+        });
 
         this.showNewTask = false;
       } else {
