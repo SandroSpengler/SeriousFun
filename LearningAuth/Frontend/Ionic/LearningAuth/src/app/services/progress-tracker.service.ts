@@ -17,7 +17,7 @@ export class ProgressTrackerService {
   url: String;
 
   constructor(private http: HttpClient) {
-    this.url = environment.urlSpringWindows;
+    this.url = environment.currentSpringURL;
 
     this.httpOptions = {
       headers: new Headers({
@@ -30,33 +30,20 @@ export class ProgressTrackerService {
     return this.http.get(`${this.url}sortTasks`);
   };
 
-  getTaskCreatedByDateRange = (
-    startDate: string,
-    endDate: string
-  ): Observable<any> => {
-    return this.http.get(
-      `${environment.urlSpringWindows}sortedTaskByCreatedRange?startDate=${startDate}&endDate=${endDate}`
-    );
+  getTaskCreatedByDateRange = (startDate: string, endDate: string): Observable<any> => {
+    return this.http.get(`${this.url}sortedTaskByCreatedRange?startDate=${startDate}&endDate=${endDate}`);
   };
 
-  getSortedTaskByDueRange = (
-    startDate: string,
-    endDate: string
-  ): Observable<any> => {
-    return this.http.get(
-      `${environment.urlSpringWindows}sortedTaskByDueRange?startDate=${startDate}&endDate=${endDate}`
-    );
+  getSortedTaskByDueRange = (startDate: string, endDate: string): Observable<any> => {
+    return this.http.get(`${this.url}sortedTaskByDueRange?startDate=${startDate}&endDate=${endDate}`);
   };
 
   postNewTask = (dueDate: string, group: string): Observable<any> => {
-    return this.http.post(
-      `${environment.urlSpringWindows}task`,
-      this.fillTaskModel(dueDate, group)
-    );
+    return this.http.post(`${this.url}task`, this.fillTaskModel(dueDate, group));
   };
 
   deleteTask = (id: string): Observable<any> => {
-    return this.http.delete(`${environment.urlSpringWindows}task?taskId=${id}`);
+    return this.http.delete(`${this.url}task?taskId=${id}`);
   };
 
   generateISODate = (dateOffset: number): string => {

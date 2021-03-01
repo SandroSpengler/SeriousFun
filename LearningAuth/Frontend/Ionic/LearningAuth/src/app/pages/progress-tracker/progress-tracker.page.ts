@@ -66,24 +66,12 @@ export class ProgressTrackerPage implements OnInit {
     return this.progressTrackerService.getTasksSortedByDate();
   };
 
-  getTaskByCreatedByDateRange = (
-    startDate: string,
-    endDate: string
-  ): Observable<any> => {
-    return this.progressTrackerService.getTaskCreatedByDateRange(
-      startDate,
-      endDate
-    );
+  getTaskByCreatedByDateRange = (startDate: string, endDate: string): Observable<any> => {
+    return this.progressTrackerService.getTaskCreatedByDateRange(startDate, endDate);
   };
 
-  getSortedTaskByDueRange = (
-    startDate: string,
-    endDate: string
-  ): Observable<any> => {
-    return this.progressTrackerService.getSortedTaskByDueRange(
-      startDate,
-      endDate
-    );
+  getSortedTaskByDueRange = (startDate: string, endDate: string): Observable<any> => {
+    return this.progressTrackerService.getSortedTaskByDueRange(startDate, endDate);
   };
 
   // Working with Data
@@ -92,7 +80,7 @@ export class ProgressTrackerPage implements OnInit {
     return this.getTasksSortedByDate().pipe(
       map((data: TaskModel[]) => {
         for (let i = 0; i < 3; i++) {
-          this.upNext.push(data[i]);
+          this.upNext.push(data[data.length - i - 1]);
         }
 
         return this.upNext;

@@ -17,7 +17,7 @@ export class LoginService {
   private user: User;
 
   constructor(private http: HttpClient) {
-    this.url = environment.urlNodeMac;
+    this.url = environment.currentNodeURL;
 
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -26,11 +26,7 @@ export class LoginService {
     };
   }
 
-  sendLoginData = (
-    userName: string,
-    userPassword: string,
-    userEmail: string
-  ): Observable<any> => {
+  sendLoginData = (userName: string, userPassword: string, userEmail: string): Observable<any> => {
     return this.http.post(
       `${this.url}UsersAuth/Login`,
       this.fillUser(userName, userPassword, userEmail),
@@ -39,11 +35,7 @@ export class LoginService {
     );
   };
 
-  public fillUser = (
-    userName: string,
-    userPassword: string,
-    email: string
-  ): User => {
+  public fillUser = (userName: string, userPassword: string, email: string): User => {
     this.user = new User();
 
     this.user.userName = userName;
